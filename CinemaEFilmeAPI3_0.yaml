@@ -1,0 +1,220 @@
+openapi: 3.0.1
+info:
+  title: API de Cinema e Filme
+  version: '1.0'
+paths:
+  # Api do Cinema
+  "/api/cinema":
+    get:
+      tags:
+        - Cinema
+      operationId: GetAllCinemas
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/Cinema"
+    post:
+      tags:
+        - Cinema
+      operationId: CreateCinema
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/Cinema"
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Cinema"
+
+  "/api/cinema/{id}":
+    get:
+      tags:
+        - Cinema
+      operationId: GetCinemaById 
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID do cinema
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Cinema"
+    put:
+      tags:
+        - Cinema
+      operationId: PutCinema
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID do cinema a ser atualizado
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/Cinema"
+      responses:
+        '200':
+          description: Updated
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Cinema"
+    delete:
+      tags:
+        - Cinema
+      operationId: DeleteCinema
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID do cinema a ser removido
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: No Content
+
+  # API do Filme
+  "/api/filme":
+    get:
+      tags:
+        - Filme
+      operationId: GetAllFilmes
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/Filme"
+    post:
+      tags:
+        - Filme
+      operationId: CreateFilme
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/Filme"
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Filme"
+
+  "/api/filme/{id}":
+    get:
+      tags:
+        - Filme
+      operationId: GetFilmeById 
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID do filme
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Filme"
+    put:
+      tags:
+        - Filme
+      operationId: UpdateFilme
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID do filme a ser atualizado
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/Filme"
+      responses:
+        '200':
+          description: Updated
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/Filme"
+    delete:
+      tags:
+        - Filme
+      operationId: DeleteFilme
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID do filme a ser removido
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: No Content
+
+components:
+  schemas:
+    Cinema:
+      type: object
+      properties:
+        cinemaId:
+          type: integer
+          format: int32
+        nome:
+          type: string
+          nullable: true
+        cnpj:
+          type: string
+          nullable: true
+      required:
+        - cinemaId
+      additionalProperties: false
+
+    Filme:
+      type: object
+      properties:
+        filmeId:
+          type: integer
+          format: int32
+        nome:
+          type: string
+          nullable: true
+        cnpj:
+          type: string
+          nullable: true
+      required:
+        - filmeId
+      additionalProperties: false
