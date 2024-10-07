@@ -203,7 +203,7 @@ components:
         - cinemaId
       additionalProperties: false
 
-    Filme:
+        Filme:
       type: object
       properties:
         filmeId:
@@ -212,9 +212,15 @@ components:
         nome:
           type: string
           nullable: true
-        cnpj:
+        genero:
           type: string
           nullable: true
+        ano:
+          type: integer
+          format: int32
+        cinemaId:
+          type: integer
+          format: int32
       required:
         - filmeId
       additionalProperties: false
